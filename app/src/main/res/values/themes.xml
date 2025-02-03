@@ -6,4 +6,5 @@
     </style>
 
     <style name="Theme.RecyclerView" parent="Base.Theme.RecyclerView" />
+
 </resources>

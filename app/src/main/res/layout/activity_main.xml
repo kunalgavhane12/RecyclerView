@@ -9,10 +9,22 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            android:background="#2A3DE9">
+        </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recyclerContact"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
@@ -24,5 +36,7 @@
         android:layout_alignParentBottom="true"
         android:src="@drawable/ic_baseline_add_24"
         android:layout_margin="21dp"/>
+
+
 
 </RelativeLayout>

@@ -2,12 +2,17 @@ package com.example.recyclerview;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -19,6 +24,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    Toolbar toolbar;
     RecyclerContactAdapter adapter;
     RecyclerView recyclerView;
     FloatingActionButton btnOpenDialog;
@@ -34,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if(getSupportActionBar()!=null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            toolbar.setTitle("My Tool Bar");
+        }
+        toolbar.setSubtitle("Sub Title");
 
         recyclerView = findViewById(R.id.recyclerContact);
         btnOpenDialog = findViewById(R.id.btnOpenDialog);
@@ -88,5 +103,26 @@ public class MainActivity extends AppCompatActivity {
             dialog.show();
 
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        new MenuInflater(this).inflate(R.menu.opt_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        if(itemId == R.id.opt_new){
+            Toast.makeText(this, "Create New file", Toast.LENGTH_SHORT).show();
+        } else if(itemId == R.id.opt_update){
+            Toast.makeText(this, "File Update", Toast.LENGTH_SHORT).show();
+        } else if(itemId == R.id.opt_close){
+            Toast.makeText(this, "File close", Toast.LENGTH_SHORT).show();
+        } else if(itemId == android.R.id.home) {
+            super.onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
